@@ -15,15 +15,12 @@ jogo_iniciado = False
 running = True
 tempo = 0  # usado para animar o título
 
-# funções
-def desenhar_fundo_gradiente(tela, cor_topo, cor_base):
-    for y in range(altura):
-        ratio = y / altura
-        r = int(cor_topo[0] * (1 - ratio) + cor_base[0] * ratio)
-        g = int(cor_topo[1] * (1 - ratio) + cor_base[1] * ratio)
-        b = int(cor_topo[2] * (1 - ratio) + cor_base[2] * ratio)
-        pygame.draw.line(tela, (r, g, b), (0, y), (largura, y))
+# carregue a imagem tela inicial
+fundo_imagem = pygame.image.load("C:\\Users\\joaoa\\OneDrive\\Documents\\GitHub\\projeto_jogo\\imagens\\fundo tela inicial.jpg")
+fundo_imagem = pygame.transform.scale(fundo_imagem, (largura, altura))
 
+
+# funções
 def desenhar_botao(tela, cor, x, y, largura, altura, texto, fonte, cor_texto):
     sombra_offset = 4
     pygame.draw.rect(tela, (50, 50, 50), (x + sombra_offset, y + sombra_offset, largura, altura), border_radius=10)
@@ -53,7 +50,7 @@ def inicia_jogo():
 
 # game loop
 while running:
-    desenhar_fundo_gradiente(screen, (0, 0, 20), (20, 20, 50))
+    screen.fill((255,255,255))
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -66,7 +63,7 @@ while running:
                 inicia_jogo()
     # tela inical
     if not jogo_iniciado:
-        desenhar_fundo_gradiente(screen, (0, 0, 20), (20, 20, 50))  # fundo tela inicial
+        screen.blit(fundo_imagem, (0, 0))  # fundo tela inicial
         desenhar_titulo_animado(screen, tempo)
         desenhar_botao(screen, (255, 255, 255), largura // 2 - 100, altura // 2 - 50, 200, 60, "Jogar", fonte, (0, 0, 0))
     else:
