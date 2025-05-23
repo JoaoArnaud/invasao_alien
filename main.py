@@ -1,11 +1,11 @@
 import pygame
 import math
 from pygame.locals import *
+import jogo
 
 # setup do pygame
 pygame.init()
-largura = 640
-altura = 480
+largura, altura = 640, 480
 screen = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("Alien's Game")
 clock = pygame.time.Clock()
@@ -68,7 +68,7 @@ while running:
         desenhar_botao(screen, (255, 255, 255), largura // 2 - 100, altura // 2 - 50, 200, 60, "Jogar", fonte, (0, 0, 0))
     else:
         # aqui começa o jogo
-        pass
+        jogo.iniciar()
 
     pygame.display.update()
     clock.tick(30)
