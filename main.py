@@ -16,7 +16,7 @@ running = True
 tempo = 0  # usado para animar o título
 
 # carregue a imagem tela inicial
-fundo_imagem = pygame.image.load("C:\\Users\\joaoa\\OneDrive\\Documents\\GitHub\\projeto_jogo\\imagens\\fundo tela inicial.jpg")
+fundo_imagem = pygame.image.load("imagens\\fundo tela inicial.jpg")
 fundo_imagem = pygame.transform.scale(fundo_imagem, (largura, altura))
 
 

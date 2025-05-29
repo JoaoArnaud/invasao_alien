@@ -26,16 +26,27 @@ def iniciar():
     fonte = pygame.font.SysFont("Comic Sans MS", 24)
     fonte_grande = pygame.font.SysFont("Comic Sans MS", 48)
 
-    jogador = pygame.Rect(largura//2 - 25, altura - 60, 50, 50)
+    # Carrega as imagens
+    nave_heroi_img = pygame.image.load("imagens\\nave_heroi.png").convert_alpha()
+    nave_heroi_img = pygame.transform.scale(nave_heroi_img, (50, 50))
+    nave_alien_img = pygame.image.load("imagens\\nave_alien.png").convert_alpha()
+    nave_alien_img = pygame.transform.scale(nave_alien_img, (40, 40))
+
+    jogador = nave_heroi_img.get_rect(center=(largura // 2, altura - 60))
     vida = 100
     tiros = []
     tiros_inimigos = []
-    inimigos = [pygame.Rect(random.randint(0, largura - 40), random.randint(20, 150), 40, 40) for _ in range(5)]
+
+    inimigos = []
+    for _ in range(5):
+        img_rect = nave_alien_img.get_rect(topleft=(random.randint(0, largura - 40), random.randint(20, 150)))
+        inimigos.append(img_rect)
+
     fase = 1
 
     rodando = True
     tempo_ultimo_tiro_inimigo = 0
-    intervalo_tiro_inimigo = 1000  # milissegundos
+    intervalo_tiro_inimigo = 1000  # milissegundos TODO colocar tempo de tiro aleatório em um range
 
     # Mostra número da fase por 2 segundos antes do início
     mostrar_fase = True
@@ -104,9 +115,9 @@ def iniciar():
 
         # Desenho
         screen.fill((10, 10, 30))
-        pygame.draw.rect(screen, (255, 255, 255), jogador)
+        screen.blit(nave_heroi_img, jogador)
         for inimigo in inimigos:
-            pygame.draw.rect(screen, (255, 0, 0), inimigo)
+            screen.blit(nave_alien_img, inimigo)
         for tiro in tiros:
             pygame.draw.rect(screen, (255, 255, 0), tiro)
         for tiro in tiros_inimigos:
