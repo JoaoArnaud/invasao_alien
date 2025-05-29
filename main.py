@@ -5,6 +5,9 @@ import jogo
 
 # setup do pygame
 pygame.init()
+pygame.mixer.init()
+pygame.mixer.music.load("sons\\musica_tema.mp3")
+pygame.mixer.music.play(-1)  # -1 significa repetir indefinidamente
 largura, altura = 640, 480
 screen = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("Alien's Game")
@@ -46,6 +49,7 @@ def desenhar_titulo_animado(tela, tempo):
 def inicia_jogo():
     global jogo_iniciado
     jogo_iniciado = True
+    pygame.mixer.music.stop()  # para a música do menu
     print('Jogo iniciado')
 
 # game loop
@@ -70,6 +74,8 @@ while running:
         # aqui começa o jogo
         jogo.iniciar()
         jogo_iniciado = False  # voltar ao menu após o game over
+        pygame.mixer.music.load("sons\\musica_tema.mp3")
+        pygame.mixer.music.play(-1)
 
     pygame.display.update()
     clock.tick(30)

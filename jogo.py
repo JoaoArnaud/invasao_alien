@@ -22,6 +22,10 @@ def mostrar_game_over(screen, fonte_grande, fonte, fase):
     pygame.time.wait(3000) # espera 3 segundos
 
 def iniciar():
+    # musiquinha
+    pygame.mixer.music.load("sons\\musica_sans.mp3")
+    pygame.mixer.music.play(-1)
+
     screen = pygame.display.set_mode((largura, altura))
     clock = pygame.time.Clock()
     fonte = pygame.font.SysFont("Comic Sans MS", 24)
@@ -47,7 +51,7 @@ def iniciar():
 
     rodando = True
     tempo_ultimo_tiro_inimigo = 0
-    intervalo_tiro_inimigo = 1000  # milissegundos TODO colocar tempo de tiro aleatório em um range
+    intervalo_tiro_inimigo = 1000  # milissegundos
 
     # Mostra número da fase por 2 segundos antes do início
     mostrar_fase = True
@@ -138,6 +142,7 @@ def iniciar():
         if vida <= 0:
             mostrar_game_over(screen, fonte_grande, fonte, fase)
             rodando = False
+            pygame.mixer.music.stop()
             return
         
         pygame.display.update()
