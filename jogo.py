@@ -4,6 +4,7 @@ import random
 largura, altura = 640, 480
 
 def mostrar_game_over(screen, fonte_grande, fonte, fase):
+    print('Game Over')
     screen.fill((0, 0, 0))
     texto1 = fonte_grande.render("GAME OVER", True, (255, 0, 0))
     texto2 = fonte.render(f"Você alcançou a fase {fase}", True, (255, 255, 255))
