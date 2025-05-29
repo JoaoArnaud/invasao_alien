@@ -69,6 +69,7 @@ while running:
     else:
         # aqui começa o jogo
         jogo.iniciar()
+        jogo_iniciado = False  # voltar ao menu após o game over
 
     pygame.display.update()
     clock.tick(30)

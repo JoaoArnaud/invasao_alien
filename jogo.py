@@ -3,10 +3,28 @@ import random
 
 largura, altura = 640, 480
 
+def mostrar_game_over(screen, fonte_grande, fonte, fase):
+    screen.fill((0, 0, 0))
+    texto1 = fonte_grande.render("GAME OVER", True, (255, 0, 0))
+    texto2 = fonte.render(f"Você alcançou a fase {fase}", True, (255, 255, 255))
+    texto3 = fonte.render("Retornando ao menu...", True, (200, 200, 200))
+                
+    rect1 = texto1.get_rect(center=(largura // 2, altura // 2 - 40))
+    rect2 = texto2.get_rect(center=(largura // 2, altura // 2 + 10))
+    rect3 = texto3.get_rect(center=(largura // 2, altura // 2 + 50))
+
+    screen.blit(texto1, rect1)
+    screen.blit(texto2, rect2)
+    screen.blit(texto3, rect3)
+
+    pygame.display.update()
+    pygame.time.wait(3000) # espera 3 segundos
+
 def iniciar():
     screen = pygame.display.set_mode((largura, altura))
     clock = pygame.time.Clock()
     fonte = pygame.font.SysFont("Comic Sans MS", 24)
+    fonte_grande = pygame.font.SysFont("Comic Sans MS", 48)
 
     jogador = pygame.Rect(largura//2 - 25, altura - 60, 50, 50)
     vida = 100
@@ -104,8 +122,10 @@ def iniciar():
             if tempo_atual - tempo_fase > 2000:
                 mostrar_fase = False
 
-        pygame.display.update()
-
+        # GAME OVER
         if vida <= 0:
-            print("Game Over")
+            mostrar_game_over(screen, fonte_grande, fonte, fase)
             rodando = False
+            return
+        
+        pygame.display.update()
