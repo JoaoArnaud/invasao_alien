@@ -4,7 +4,6 @@ import random
 largura, altura = 640, 480
 
 def mostrar_game_over(screen, fonte_grande, fonte, fase):
-    print('Game Over')
     screen.fill((0, 0, 0))
     texto1 = fonte_grande.render("GAME OVER", True, (255, 0, 0))
     texto2 = fonte.render(f"Você alcançou a fase {fase}", True, (255, 255, 255))
@@ -18,8 +17,11 @@ def mostrar_game_over(screen, fonte_grande, fonte, fase):
     screen.blit(texto2, rect2)
     screen.blit(texto3, rect3)
 
+    pygame.mixer.music.load("sons\\losing-horn.mp3")
+    pygame.mixer.music.play()
+
     pygame.display.update()
-    pygame.time.wait(3000) # espera 3 segundos
+    pygame.time.wait(6000) # espera 6 segundos
 
 def iniciar():
     # musiquinha
@@ -51,7 +53,7 @@ def iniciar():
 
     rodando = True
     tempo_ultimo_tiro_inimigo = 0
-    intervalo_tiro_inimigo = 1000  # milissegundos
+    intervalo_tiro_inimigo = random.randint(1000, 3000)  # entre 1s e 3s
 
     # Mostra número da fase por 2 segundos antes do início
     mostrar_fase = True
@@ -92,6 +94,7 @@ def iniciar():
             for inimigo in inimigos:
                 tiros_inimigos.append(pygame.Rect(inimigo.centerx, inimigo.bottom, 5, 10))
             tempo_ultimo_tiro_inimigo = tempo_atual
+            intervalo_tiro_inimigo = random.randint(1000, 3000)
 
         for tiro in tiros_inimigos:
             tiro.y += 7
@@ -138,11 +141,12 @@ def iniciar():
             if tempo_atual - tempo_fase > 2000:
                 mostrar_fase = False
 
-        # GAME OVER
+        # Jogador morre:
         if vida <= 0:
+            print('Game Over')
+            pygame.mixer.music.stop()
             mostrar_game_over(screen, fonte_grande, fonte, fase)
             rodando = False
-            pygame.mixer.music.stop()
             return
         
         pygame.display.update()
