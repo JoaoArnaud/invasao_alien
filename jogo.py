@@ -28,6 +28,9 @@ def iniciar():
     pygame.mixer.music.load("sons\\musica_sans.mp3")
     pygame.mixer.music.play(-1)
 
+    # laser sound
+    laser_som = pygame.mixer.Sound('sons\\laser.mp3')
+
     screen = pygame.display.set_mode((largura, altura))
     clock = pygame.time.Clock()
     fonte = pygame.font.SysFont("Comic Sans MS", 24)
@@ -71,6 +74,7 @@ def iniciar():
 
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_z:
+                    laser_som.play()
                     tiros.append(pygame.Rect(jogador.x + jogador.width // 2 - 2, jogador.y, 5, 10))
 
         # Movimento do jogador com limite de tela
