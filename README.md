@@ -7,27 +7,12 @@
 
 ## 🧠 Resumo do Jogo
 
-Você é o comandante de uma base espacial atacada por alienígenas. A cada rodada, precisa escolher entre:
+Você é o comandante de uma nave espacial atacada por alienígenas. A cada rodada, precisa escolher entre:
 
 - ⚔️ **Atacar**
 - 🛡️ **Defender**
-- 🛠️ **Reparar**
-- 📡 **Escanear**
-
-Seu objetivo é eliminar o inimigo antes que ele destrua sua base. O jogo ocorre por **texto e menus interativos** (Tkinter). A inteligência artificial do inimigo reage às suas jogadas!
-
----
-
-## 📁 Estrutura do Projeto
-
-invasao_alien/
-├── main.py # Inicia o jogo e a janela principal (interface)
-├── interface.py # Monta e atualiza a interface com Tkinter
-├── jogo.py # Lógica principal do jogo (rodadas e ações)
-├── jogador.py # Funções do jogador (ataque, defesa, etc)
-├── inimigo.py # Funções do inimigo (IA simples)
-├── utils.py # Funções auxiliares (cálculos e random)
-├── status.py # Lógica de status e mensagens
+  
+Seu objetivo é eliminar o inimigo antes que ele te destrua.
 
 ---
 
@@ -47,8 +32,6 @@ invasao_alien/
 2. Execute o jogo:
     ```bash
     python main.py
-
-3. Use os menus para escolher sua ação a cada rodada.
 
 
 ## 🎓 Créditos Acadêmicos
