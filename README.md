@@ -1,4 +1,4 @@
-# 🛸 Invasão Alienígena – Defesa da Base
+# 🛸 Invasão Alienígena
 
 **Projeto da disciplina "Programação de Computadores"**  
 **Curso de Ciência da Computação – UNIPÊ (Centro Universitário de João Pessoa)**
